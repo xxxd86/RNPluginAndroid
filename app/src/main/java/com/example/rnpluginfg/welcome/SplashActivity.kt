@@ -9,10 +9,10 @@ import android.os.Message
 import android.window.SplashScreen
 import androidx.viewbinding.ViewBinding
 import com.example.rnpluginfg.MainActivity
-import com.example.rnpluginfg.Manifest
 import com.example.rnpluginfg.base.baseActivity.BaseLoadingActivity
 import com.example.rnpluginfg.databinding.ActivitySplashBinding
-import com.example.rnpluginfg.utils.DeviceUtils
+import com.example.rnpluginfg.home.HomeActivity
+
 
 
 /**
@@ -48,7 +48,7 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding
     private fun jump(){
         if (!hasPaused) {
             hasPaused = true;
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,HomeActivity::class.java)
             startActivityForResult(intent,101)
             finish();
         }
@@ -74,21 +74,21 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding
         hasPaused = false;
         jump();
     }
-    fun getResourceFromIntern(){
-        DeviceUtils.checkLocationPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION,
-            lackPermission = {
-                /**
-                 * 获取网络
-                 */
-            },
-            havePermission = {
-                /**
-                 * 进行操作
-                 */
-            }
-
-            )
-    }
+//    fun getResourceFromIntern(){
+//        DeviceUtils.checkLocationPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION,
+//            lackPermission = {
+//                /**
+//                 * 获取网络
+//                 */
+//            },
+//            havePermission = {
+//                /**
+//                 * 进行操作
+//                 */
+//            }
+//
+//            )
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

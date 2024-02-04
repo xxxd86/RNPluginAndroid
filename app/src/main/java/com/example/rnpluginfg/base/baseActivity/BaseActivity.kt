@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.rnpluginfg.base.DeviceChange
-import com.example.rnpluginfg.base.baseViewModel.BaseViewModel
 
 /**
  * 底层Activity
@@ -20,10 +19,10 @@ import com.example.rnpluginfg.base.baseViewModel.BaseViewModel
  */
 abstract class BaseActivity<B : ViewBinding?> : AppCompatActivity() ,
     DeviceChange {
-        var viewBinding: B? = null
+        var binding: B? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(viewBinding?.root)
+        setContentView(binding?.root)
     }
 
     /**
