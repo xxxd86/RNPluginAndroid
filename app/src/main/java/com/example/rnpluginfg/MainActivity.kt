@@ -1,9 +1,10 @@
 package com.example.rnpluginfg
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import com.example.rnpluginfg.databinding.ActivityMainBinding
+import com.example.rnpluginfg.welcome.LoadingActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
         binding.sampleText.text = stringFromJNI()
+        binding.loading.setOnClickListener {
+            val intent = Intent(this, LoadingActivity::class.java)
+            startActivityForResult(intent,101)
+        }
     }
 
     /**

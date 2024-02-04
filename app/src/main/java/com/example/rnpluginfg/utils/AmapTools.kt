@@ -1,4 +1,4 @@
-package com.example.rnpluginfg.Utils
+package com.example.rnpluginfg.utils
 
 import android.Manifest
 import android.content.Context
