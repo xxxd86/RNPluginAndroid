@@ -14,33 +14,10 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 object AmapTools {
-    private const val mPermissions =
+     const val mPermissions =
         Manifest.permission.ACCESS_FINE_LOCATION
 
-    /**
-     * 判断是否缺少权限
-     */
-    private fun lacksPermission(mContexts: Context, permission: String): Boolean {
 
-        return ContextCompat.checkSelfPermission(mContexts, permission) ==
-                PackageManager.PERMISSION_DENIED
-    }
-
-    /*
-    请求精确定位
-     */
-    fun checkLocationPermission(activity: AppCompatActivity) {
-        if (lacksPermission(activity.applicationContext, mPermissions)) {
-            /*
-            缺少精确定位，提醒开启精确定位
-             */
-//            ToastUtil.show(activity.applicationContext, "请选择精确位置")
-            getLocationPermission(activity)
-        } else {
-            //权限开启
-
-        }
-    }
     private fun getLocationPermission(activity: AppCompatActivity) {
         val locationPermissionRequest = activity.registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()

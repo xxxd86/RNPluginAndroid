@@ -2,6 +2,6 @@ package com.example.rnpluginfg.welcome
 
 import com.example.rnpluginfg.base.baseViewModel.BaseViewModel
 
-class LoadingViewModel:BaseViewModel() {
+class SplashViewModel:BaseViewModel() {
     var LoadingImage = arrayListOf<String>() //加载图片
 }

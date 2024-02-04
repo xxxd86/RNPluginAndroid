@@ -2,9 +2,11 @@ package com.example.rnpluginfg.base.baseActivity
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.Glide
 import com.example.rnpluginfg.utils.DeviceUtils
 import com.example.rnpluginfg.utils.ScreenState
 
@@ -28,9 +30,18 @@ abstract class BaseLoadingActivity <VM:ViewModel,VB : ViewBinding> : BaseVMActiv
     /**
      * 加载进入时广告加载，Invoke点击方法，使用array方式进行储存
      */
-    fun resolveLoadingResource(array: ArrayList<String>){
+    fun resolveLoadingResource(array: ArrayList<String>,view:View){
 
     }
+    /**
+     * 实现Splash每次进入加载广告三秒
+     * @param SPLASH_RE
+     */
+    override fun onRestart() {
+        super.onRestart()
 
-
+    }
+}
+enum class LoadingType{
+    SPLASH_NO,SPLASH_RE,JUMP,LOAD
 }

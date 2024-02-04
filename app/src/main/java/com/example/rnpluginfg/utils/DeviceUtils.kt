@@ -1,9 +1,12 @@
 package com.example.rnpluginfg.utils
 
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 object DeviceUtils {
     /**
@@ -34,6 +37,27 @@ object DeviceUtils {
             ScreenState.STATE_FULL -> setFullScreen(activity)
             ScreenState.STATE_PAT  -> setTransTableScreen(activity)
             else -> {}
+        }
+    }
+    fun getInternPermission(){
+
+    }
+    private fun lacksPermission(mContexts: Context, permission: String): Boolean {
+
+        return ContextCompat.checkSelfPermission(mContexts, permission) ==
+                PackageManager.PERMISSION_DENIED
+    }
+    fun checkLocationPermission(activity: AppCompatActivity,mPermissions:String,lackPermission:()->Unit,havePermission:()->Unit) {
+        if (lacksPermission(activity.applicationContext,mPermissions)) {
+            /*
+            缺少精确定位，提醒开启精确定位
+             */
+//            ToastUtil.show(activity.applicationContext, "请选择精确位置")
+            lackPermission.invoke()
+//            AmapTools.getLocationPermission(activity)
+        } else {
+            //权限开启
+            havePermission.invoke()
         }
     }
 }
