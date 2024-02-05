@@ -6,6 +6,7 @@ import com.example.rnpluginfg.R
 import com.example.rnpluginfg.base.baseActivity.BaseActivity
 import com.example.rnpluginfg.base.baseActivity.BaseActivityLate
 import com.example.rnpluginfg.databinding.ActivityHomeBinding
+import com.example.rnpluginfg.textFragment.MyFragment
 
 /**
  * @author wh
@@ -14,7 +15,10 @@ import com.example.rnpluginfg.databinding.ActivityHomeBinding
 class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        supportFragmentManager.beginTransaction()
+            .setReorderingAllowed(true)
+            .add(binding.fragmentContainer.id,MyFragment::class.java,null)
+            .commit()
     }
 
     /**

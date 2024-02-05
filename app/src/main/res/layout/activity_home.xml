@@ -5,13 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.HomeActivity">
-    <androidx.fragment.app.FragmentContainerView
+
+    <fragment
         android:id="@+id/fragmentContainer"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.rnpluginfg.textFragment.HomeFragment"
-        >
-    </androidx.fragment.app.FragmentContainerView>
+        android:layout_height="510dp"
+        app:navGraph="@navigation/text_nav"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_below="@+id/fragmentContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="0dp">
+
+    </View>
 
 
 </RelativeLayout>
