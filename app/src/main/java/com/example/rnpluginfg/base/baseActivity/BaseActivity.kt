@@ -48,16 +48,17 @@ abstract class BaseActivity<B : ViewBinding?> : AppCompatActivity() ,
         return false
     }
 }
-abstract open class BaseActivityLate<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity() {
+abstract class BaseActivityLate<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity() {
      val binding: B by lazy { bindingFactory(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
+    open fun initView(){}
 }
 
-abstract open class BaseActivityCommon<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity() {
+abstract class BaseActivityCommon<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) : AppCompatActivity() {
     private lateinit var binding: B
 
     override fun onCreate(savedInstanceState: Bundle?) {

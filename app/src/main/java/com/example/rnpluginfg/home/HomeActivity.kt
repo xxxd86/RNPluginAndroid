@@ -31,9 +31,9 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
     }
 
     /**
-     * 初始化Fragment
+     * 初始化BottomNavFragment
      */
-    fun initView(){
+    override fun initView(){
         contentId = binding.container.id
 
         initFirstFragment()
@@ -46,7 +46,7 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
                     }
                     R.id.tab_friend ->{
                         if (tableFragment == null){
-                            tableFragment = TableFragment()
+                            tableFragment = TableFragment.newInstance()
                             supportFragmentManager.beginTransaction()
                                 .add(contentId,tableFragment!!,"TableFragment")
                                 .commit()
@@ -56,7 +56,7 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
                     }
                     R.id.tab_profile ->{
                         if (myFragment == null){
-                            myFragment = MyFragment()
+                            myFragment = MyFragment.newInstance()
                             supportFragmentManager.beginTransaction()
                                 .add(contentId,myFragment!!,"TableFragment")
                                 .commit()
@@ -81,7 +81,7 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
         transaction.commit()
     }
     private fun initFirstFragment() {
-        homeFragment = HomeFragment()
+        homeFragment = HomeFragment.newInstance()
         supportFragmentManager.beginTransaction()
             .show(homeFragment!!)
             .add(contentId, homeFragment!!, "HomeFragment")
