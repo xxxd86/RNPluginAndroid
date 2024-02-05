@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_nav"
+    app:startDestination="@id/homeFragment2">
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.rnpluginfg.textFragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_tableFragment2"
+            app:destination="@id/tableFragment2" />
+        <action
+            android:id="@+id/action_homeFragment2_to_myFragment2"
+            app:destination="@id/myFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/tableFragment2"
+        android:name="com.example.rnpluginfg.textFragment.TableFragment"
+        android:label="fragment_table"
+        tools:layout="@layout/fragment_table" >
+        <action
+            android:id="@+id/action_tableFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/myFragment2"
+        android:name="com.example.rnpluginfg.textFragment.MyFragment"
+        android:label="fragment_my"
+        tools:layout="@layout/fragment_my" >
+        <action
+            android:id="@+id/action_myFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
+</navigation>
