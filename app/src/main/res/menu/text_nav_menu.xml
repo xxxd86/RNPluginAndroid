@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/tab_home"
         android:icon="@color/black"
         android:title="HOME" />
     <item android:title="SEARCH"
         android:icon="@color/black"
-        android:id="@+id/searchFragment"/>
+        android:id="@+id/tab_friend"/>
+    <item android:title="My"
+        android:icon="@color/black"
+        android:id="@+id/tab_profile"/>
 </menu>
