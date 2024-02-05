@@ -35,7 +35,9 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
      */
     fun initView(){
         contentId = binding.container.id
+
         initFirstFragment()
+
         binding.navBottom.setOnItemSelectedListener {item->
             if(item.itemId!=binding.navBottom.selectedItemId){
                 when(item.itemId){
@@ -48,8 +50,8 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
                             supportFragmentManager.beginTransaction()
                                 .add(contentId,tableFragment!!,"TableFragment")
                                 .commit()
-                            showFragment(tableFragment!!)
                         }
+                        showFragment(tableFragment!!)
 
                     }
                     R.id.tab_profile ->{
@@ -58,8 +60,9 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
                             supportFragmentManager.beginTransaction()
                                 .add(contentId,myFragment!!,"TableFragment")
                                 .commit()
-                            showFragment(myFragment!!)
+
                         }
+                        showFragment(myFragment!!)
                     }
                 }
                 return@setOnItemSelectedListener true
@@ -85,23 +88,4 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
             .commit()
         lastShowFragment = homeFragment
     }
-//    private fun changeFragment(showFragment: Fragment) {
-//        var showFragment: Fragment = showFragment
-//        val fm: FragmentManager = supportFragmentManager
-//        val ft: FragmentTransaction = fm.beginTransaction()
-//        showFragment.isVisible
-//        if (showFragment == null) {
-//            showFragment = HomeFragment()
-//            ft.add(contentId, showFragment)
-//        }
-//        // mCurrFragment 存储当前显示的 Fragment
-//        if (lastShowFragment != null) {
-//            ft.hide(lastShowFragment!!)
-//        }
-//        ft.show(showFragment)
-//        lastShowFragment = showFragment
-//        ft.commit()
-//    }
-
-
 }
