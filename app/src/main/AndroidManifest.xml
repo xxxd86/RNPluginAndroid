@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许写设备缓存，用于问题排查 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGSS" /> <!-- 允许读设备等信息，用于问题排查 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"

@@ -3,6 +3,9 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            setUrl("https://chaquo.com/maven")
+        }
     }
 }
 dependencyResolutionManagement {

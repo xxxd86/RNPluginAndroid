@@ -8,6 +8,9 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
+/**
+ * 页面控制以及权限控制
+ */
 object DeviceUtils {
     /**
      * 整个页面都是图片，隐藏状态栏和底部导航栏。

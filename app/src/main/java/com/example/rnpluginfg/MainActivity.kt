@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
      * which is packaged with this application.
      */
     external fun stringFromJNI(): String
+    external fun getPythonHello():String
 
     companion object {
         // Used to load the 'rnpluginfg' library on application startup.

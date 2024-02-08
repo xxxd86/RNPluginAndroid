@@ -1,6 +1,9 @@
+import com.chaquo.python.pythonVersionInfo
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.chaquo.python")
 }
 
 android {
@@ -14,6 +17,10 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+            ndk {
+                // On Apple silicon, you can omit x86_64.
+                abiFilters += listOf("arm64-v8a", "x86_64")
+            }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -41,6 +48,20 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    flavorDimensions += "pyVersion"
+    productFlavors {
+        create("py309") {dimension  = "pyVersion" }
+        create("py310") { dimension = "pyVersion" }
+        create("py311") { dimension = "pyVersion" }
+    }
+}
+chaquopy {
+    productFlavors {
+        getByName("py309") { version = "3.9"}
+    }
+    defaultConfig {
+        buildPython("D:/python3.9/python.exe","-3.9")
     }
 }
 

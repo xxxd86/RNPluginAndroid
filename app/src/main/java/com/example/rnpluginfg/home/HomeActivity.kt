@@ -1,6 +1,7 @@
 package com.example.rnpluginfg.home
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -87,5 +88,10 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
             .add(contentId, homeFragment!!, "HomeFragment")
             .commit()
         lastShowFragment = homeFragment
+    }
+
+    override fun startActivityForResult(intent: Intent, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
+        intent.data
     }
 }
