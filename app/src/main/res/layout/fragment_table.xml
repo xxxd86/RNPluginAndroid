@@ -17,5 +17,17 @@
 
     </Button>
 
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="340dp"
+        android:layout_height="212dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="71dp"
+        android:text="1900"
+        android:textAlignment="center"
+        android:textSize="10dp">
+
+    </TextView>
+
 
 </RelativeLayout>

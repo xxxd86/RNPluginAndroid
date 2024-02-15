@@ -2,6 +2,7 @@ package com.example.rnpluginfg.base.baseActivity
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModel
@@ -18,8 +19,9 @@ import com.example.rnpluginfg.utils.ScreenState
  * 默认全屏显示fullScrean
  * 动画加载网络库 使用Glide
  */
-abstract class BaseLoadingActivity <VM:ViewModel,VB : ViewBinding> : BaseVMActivity<ViewModel,ViewBinding>(){
+abstract class BaseLoadingActivity <VM:ViewModel,VB : ViewBinding> (override var bindingFactory: (LayoutInflater) -> VB): BaseVMActivity<ViewModel,ViewBinding>(bindingFactory){
     var fullScreen = true
+    override val binding: VB by lazy { bindingFactory(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (fullScreen){

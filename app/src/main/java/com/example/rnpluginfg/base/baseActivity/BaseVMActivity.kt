@@ -2,6 +2,7 @@ package com.example.rnpluginfg.base.baseActivity
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,13 +17,12 @@ import java.lang.reflect.ParameterizedType
 /**
  * MVVM框架基础
  */
-abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> (open val bindingFactory: (LayoutInflater) -> VB) : AppCompatActivity() {
     lateinit var viewModel: VM
-    lateinit var binding: VB
+    open val binding: VB by lazy { bindingFactory(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(getViewModelClass())
-        binding = getViewBinding()
         setContentView(binding.root)
     }
 
@@ -39,6 +39,4 @@ abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActiv
             .load(url)
             .into(view)
     }
-
-    abstract fun getViewBinding(): VB
 }

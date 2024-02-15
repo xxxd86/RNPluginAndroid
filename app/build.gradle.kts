@@ -16,10 +16,9 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
             ndk {
                 // On Apple silicon, you can omit x86_64.
-                abiFilters += listOf("arm64-v8a", "x86_64")
+                abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
             }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,11 +56,17 @@ android {
     }
 }
 chaquopy {
-    productFlavors {
-        getByName("py309") { version = "3.9"}
+
+}
+for (path in listOf(
+    "src/utils"
+)) {
+    android.sourceSets.getByName("main") {
+        java { srcDir("$path/java") }
+        res { srcDir("$path/res") }
     }
-    defaultConfig {
-        buildPython("D:/python3.9/python.exe","-3.9")
+    chaquopy.sourceSets.getByName("main") {
+        srcDir("$path/python")
     }
 }
 

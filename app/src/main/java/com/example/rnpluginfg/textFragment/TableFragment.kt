@@ -14,6 +14,8 @@ import com.chaquo.python.Kwarg;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.android.AndroidPlatform;
 import com.chaquo.python.Python;
+import com.example.rnpluginfg.utils.PKJChannel
+
 /**
  * @param 初步尝试在此页面实现语音识别转换功能 ————测试页面
  */
@@ -39,12 +41,14 @@ class TableFragment : Fragment() {
         initView()
     }
     fun initView(){
-        binding.testbutton.setOnClickListener {
-            FileTools.intentToFileReturn(this.requireActivity(),"",1, callBack = {
-
-            })
-        }
-
+//        binding.testbutton.setOnClickListener {
+//            FileTools.intentToFileReturn(this.requireActivity(),"",1, callBack = {
+//
+//            })
+//        }
+        PKJChannel.getRFromPython_KOTLIN("Hello","text", callback = {
+            binding.hello.text = it.toString()
+        },requireContext())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

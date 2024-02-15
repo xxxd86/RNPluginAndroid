@@ -6,13 +6,16 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.os.PersistableBundle
 import android.window.SplashScreen
 import androidx.viewbinding.ViewBinding
+import com.chaquo.python.Python
+import com.chaquo.python.android.AndroidPlatform
 import com.example.rnpluginfg.MainActivity
 import com.example.rnpluginfg.base.baseActivity.BaseLoadingActivity
 import com.example.rnpluginfg.databinding.ActivitySplashBinding
 import com.example.rnpluginfg.home.HomeActivity
-
+import com.example.rnpluginfg.utils.PKJChannel
 
 
 /**
@@ -20,7 +23,7 @@ import com.example.rnpluginfg.home.HomeActivity
  * 在App应用退出后（此时App是在后台运行的，并不是进程被杀死），每当用户再次将该应用切换到前台显示时，总能向用户展示3S的广告页。
  */
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding>() {
+class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding>(ActivitySplashBinding::inflate) {
     private val AD_TIMEOUT = 2000
     private val MSG_AD_TIMEOUT = 1001
 
@@ -43,6 +46,17 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.text.apply {
+            PKJChannel.getRFromPython_KOTLIN("Hello","text", callback = {python->
+                this.text = python.toString()
+            },this@SplashActivity)
+        }
+//        if (!Python.isStarted()){
+//            Python.start( AndroidPlatform(this));
+//        }
+//        val python= Python.getInstance(); // 初始化Python环境
+//        val pyObject=python.getModule("Hello");//"text"为需要调用的Python文件名
+//        val res=pyObject.callAttr("text");//"sayHello"为需要调用的函数名
         loadAd()
     }
     private fun jump(){
@@ -93,5 +107,4 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding
     override fun onDestroy() {
         super.onDestroy()
     }
-    override fun getViewBinding(): ViewBinding  =  ActivitySplashBinding.inflate(layoutInflater)
 }
