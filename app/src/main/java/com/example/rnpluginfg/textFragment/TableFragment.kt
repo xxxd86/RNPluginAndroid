@@ -14,6 +14,7 @@ import com.chaquo.python.Kwarg;
 import com.chaquo.python.PyObject;
 import com.chaquo.python.android.AndroidPlatform;
 import com.chaquo.python.Python;
+import com.example.rnpluginfg.pluginHttpGet.WeChatQRCodeActivity
 import com.example.rnpluginfg.utils.PKJChannel
 
 /**
@@ -41,24 +42,12 @@ class TableFragment : Fragment() {
         initView()
     }
     fun initView(){
-//        binding.testbutton.setOnClickListener {
-//            FileTools.intentToFileReturn(this.requireActivity(),"",1, callBack = {
-//
-//            })
-//        }
-        PKJChannel.getRFromPython_KOTLIN("Hello","text", callback = {
-            binding.hello.text = it.toString()
-        },requireContext())
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        data?.data
-        if(resultCode == 101){
-            val uri = data?.data
-
-
+        binding.testbutton.setOnClickListener {
+            val intent = Intent(requireActivity(),WeChatQRCodeActivity::class.java)
+            startActivityForResult(intent,101)
         }
     }
+
+
 
 }

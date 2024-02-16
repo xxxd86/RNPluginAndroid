@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Message
 import android.os.PersistableBundle
 import android.window.SplashScreen
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
@@ -16,6 +17,13 @@ import com.example.rnpluginfg.base.baseActivity.BaseLoadingActivity
 import com.example.rnpluginfg.databinding.ActivitySplashBinding
 import com.example.rnpluginfg.home.HomeActivity
 import com.example.rnpluginfg.utils.PKJChannel
+import com.king.wechat.qrcode.WeChatQRCodeDetector
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.opencv.OpenCV
 
 
 /**
@@ -46,17 +54,19 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel,ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.text.apply {
-            PKJChannel.getRFromPython_KOTLIN("Hello","text", callback = {python->
-                this.text = python.toString()
-            },this@SplashActivity)
-        }
-//        if (!Python.isStarted()){
-//            Python.start( AndroidPlatform(this));
-//        }
-//        val python= Python.getInstance(); // 初始化Python环境
-//        val pyObject=python.getModule("Hello");//"text"为需要调用的Python文件名
-//        val res=pyObject.callAttr("text");//"sayHello"为需要调用的函数名
+        //初始化OpenCV
+        OpenCV.initOpenCV()
+        //初始化WeChatQRCodeDetector
+        WeChatQRCodeDetector.init(applicationContext)
+//            lifecycleScope.launch {
+//                  withContext(Dispatchers.IO){
+//                      PKJChannel.getRFromPython_KOTLIN("Hello","text", callback = {python->
+//                          binding.text.text = python.toString()
+//                      },this@SplashActivity)
+//                  }
+//            }
+
+
         loadAd()
     }
     private fun jump(){
