@@ -3,11 +3,14 @@ package com.example.rnpluginfg.pluginHttpGet
 
 import android.content.Intent
 import android.graphics.Point
+import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import com.example.rnpluginfg.R
+import com.example.rnpluginfg.utils.FileTools
 
 import com.king.camera.scan.AnalyzeResult
 import com.king.camera.scan.CameraScan
@@ -16,6 +19,9 @@ import com.king.camera.scan.util.PointUtils
 import com.king.wechat.qrcode.WeChatQRCodeDetector
 import com.king.wechat.qrcode.scanning.WeChatCameraScanActivity
 import com.king.wechat.qrcode.scanning.analyze.WeChatScanningAnalyzer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.opencv.OpenCV
 
 /**
@@ -81,23 +87,42 @@ class WeChatQRCodeActivity : WeChatCameraScanActivity() {
                 val intent = Intent()
                 intent.putExtra(CameraScan.SCAN_RESULT, result.result[it])
                 setResult(RESULT_OK, intent)
-                finish()
+                /**
+                 * 实现网络访问 OKHTTP
+                 * @param 实现判断网络才能进行文件添加，需要进行Url截取
+                 * @sample 首先进行测试网页
+                 */
+                Toast.makeText(this,result.result[it],Toast.LENGTH_SHORT).show()
+                        CoroutineScope(Dispatchers.Main).launch {
+                            FileTools.doStuffWithZip(applicationContext,Uri.parse("http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip"))
+                        }
+//                        FileTools.unZipFile("http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip",FileTools.getMapRootPath(applicationContext))
+
+//                finish()
             }
             //显示结果点信息
             viewfinderView.showResultPoints(points)
 
             if(result.result.size == 1) {
                 val intent = Intent()
+                val url = result.result[0]
                 intent.putExtra(CameraScan.SCAN_RESULT, result.result[0])
                 setResult(RESULT_OK, intent)
-                finish()
+                /*
+                初次扫入，第一次判断,并弹出Toast,网页
+                @see 测试网页 http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip
+                 */
+
+                Toast.makeText(this,result.result[0],Toast.LENGTH_SHORT).show()
+//                finish()
             }
         } else {
             // 一般需求都是识别一个码，所以这里取第0个就可以；有识别多个码的需求，可以取全部
             val intent = Intent()
             intent.putExtra(CameraScan.SCAN_RESULT, result.result[0])
             setResult(RESULT_OK, intent)
-            finish()
+            Toast.makeText(this,result.result[0],Toast.LENGTH_SHORT).show()
+//            finish()
         }
     }
 
