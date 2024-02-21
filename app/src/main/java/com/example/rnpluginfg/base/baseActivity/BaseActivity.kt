@@ -54,7 +54,9 @@ abstract class BaseActivityLate<B : ViewBinding>(val bindingFactory: (LayoutInfl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initView()
     }
+
     open fun initView(){}
 }
 
