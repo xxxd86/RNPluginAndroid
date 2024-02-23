@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/record"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OpenVoiceActivity">
+
+    <Button
+
+        android:id="@+id/start"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="开始录音"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="269dp"
+        android:layout_marginBottom="226dp">
+
+    </Button>
+
+    <Button
+        android:id="@+id/end"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="226dp"
+        android:text="停止录音">
+
+    </Button>
+
+    <Button
+
+        android:id="@+id/genernown"
+        android:text="genernown"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="279dp"
+        android:layout_marginBottom="506dp">
+
+    </Button>
+
+    <Button
+        android:id="@+id/generntext"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="506dp"
+        android:text="generntext">
+
+    </Button>
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="336dp"
+        android:layout_height="71dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="386dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="魏豪你好" />
+
+</RelativeLayout>
