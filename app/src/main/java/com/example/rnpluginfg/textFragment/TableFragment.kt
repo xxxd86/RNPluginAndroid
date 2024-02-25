@@ -25,7 +25,7 @@ import com.king.camera.scan.CameraScan
 import com.king.wechat.qrcode.scanning.WeChatCameraScanActivity
 
 /**
- * @param 初步尝试在此页面实现语音识别转换功能 ————测试页面
+ * @param 初步尝试在此页面实现语音识别转换功能 ————测试页面fragment
  */
 class TableFragment : Fragment() {
 

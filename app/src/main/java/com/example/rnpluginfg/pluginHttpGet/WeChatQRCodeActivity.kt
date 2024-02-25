@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.example.openvoicepn.OpenVoiceActivity
 import com.example.rnpluginfg.R
 import com.example.rnpluginfg.fgopencv.PluginHttpcv
+import com.example.rnpluginfg.text.home.TestActivity
 import com.example.rnpluginfg.utils.FilePathTools
 import com.example.rnpluginfg.utils.FileTools
 
@@ -87,7 +88,7 @@ class WeChatQRCodeActivity : WeChatCameraScanActivity() {
             //设置Item点击监听
             viewfinderView.setOnItemClickListener {
                 //显示点击Item将所在位置扫码识别的结果返回
-                val intent = Intent()
+                val intent = Intent(this,TestActivity::class.java)
                 intent.putExtra(CameraScan.SCAN_RESULT, result.result[it])
                 setResult(RESULT_OK, intent)
                 /**
@@ -98,7 +99,7 @@ class WeChatQRCodeActivity : WeChatCameraScanActivity() {
                  */
 //
 //                PluginHttpcv.newInstance().opencvRunPlugin(this,"http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip",FilePathTools.getExternalFilesDir(applicationContext,"download"))
-
+                startActivityForResult(intent,101)
                 /**
                  * @param 模拟已经下好包,activity使用包内容,添加了python包
                  */
@@ -108,10 +109,11 @@ class WeChatQRCodeActivity : WeChatCameraScanActivity() {
             viewfinderView.showResultPoints(points)
 
             if(result.result.size == 1) {
-                val intent = Intent()
+                val intent = Intent(this,TestActivity::class.java)
                 val url = result.result[0]
                 intent.putExtra(CameraScan.SCAN_RESULT, result.result[0])
                 setResult(RESULT_OK, intent)
+
                 /*
                 初次扫入，第一次判断,并弹出Toast,网页
                 @see 测试网页 http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip
