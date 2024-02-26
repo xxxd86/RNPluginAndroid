@@ -36,6 +36,10 @@ abstract class BaseAdapter<B : ViewBinding, BH : BaseAdapter.BaseViewHolder<B>>(
 
 
     abstract class BaseViewHolder<B : ViewBinding>(val binding: B) : ViewHolder(binding.root){
+
+        /**
+         * 设置默认大小25px
+         */
         fun setImage(view: ImageView?, url: String?, options: RequestOptions? = null, default: Boolean = true) {
 
             if (url.isNullOrEmpty() || view == null) {
@@ -58,7 +62,6 @@ abstract class BaseAdapter<B : ViewBinding, BH : BaseAdapter.BaseViewHolder<B>>(
                         .into(view)
                 }
             }
-
         }
     }
 }
