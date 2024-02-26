@@ -4,57 +4,61 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.asbaselibrary.base.DeviceChange
+import com.example.asbaselibrary.utils.DpUtils
 
 /**
  * 设置Lists的class以及设置binding
  * T 为 绑定List
  */
-abstract class BaseAdapter<B : ViewBinding?, BH : ViewHolder>(val bindingFactory: (LayoutInflater) -> B,val activity: AppCompatActivity) :
-    RecyclerView.Adapter<BH>(), DeviceChange {
+abstract class BaseAdapter<B : ViewBinding, BH : BaseAdapter.BaseViewHolder<B>>(
+    private val bindingFactory: (LayoutInflater, ViewGroup, Boolean) -> B
+) : RecyclerView.Adapter<BH>(), DeviceChange {
 
-    private var layoutInflater: LayoutInflater? = null
-    val binding: B? by lazy { layoutInflater?.let { bindingFactory(it) } }
-    open var itemClick:(()->Unit?)? = null //需要外接点击接口,自行调用
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BH {
-        if (layoutInflater == null) {
-            layoutInflater = LayoutInflater.from(parent.context)
+        val itemBinding = bindingFactory(LayoutInflater.from(parent.context), parent, false)
+        return createViewHolder(itemBinding)
+    }
+
+    // 具体的数据绑定逻辑
+    abstract fun onBind(holder: BH, position: Int)
+
+    abstract fun createViewHolder(binding: B): BH
+
+
+    abstract class BaseViewHolder<B : ViewBinding>(val binding: B) : ViewHolder(binding.root){
+        fun setImage(view: ImageView?, url: String?, options: RequestOptions? = null, default: Boolean = true) {
+
+            if (url.isNullOrEmpty() || view == null) {
+                return
+            }
+            if(default){
+                val moptions =  RequestOptions().transform(
+                    CenterCrop(),
+                    RoundedCorners(DpUtils.dp2px(binding.root.context, 25))
+                )
+                Glide.with(binding.root)
+                    .load(url)
+                    .apply(moptions)
+                    .into(view)
+            }else{
+                if (options != null) {
+                    Glide.with(binding.root)
+                        .load(url)
+                        .apply(options)
+                        .into(view)
+                }
+            }
+
         }
-
-        val itemBinding = binding ?: throw IllegalStateException("Binding cannot be null")
-
-        // Inflate the view using the provided bindingFactory
-        val itemView = itemBinding.root
-
-        // Create and return an instance of your BaseViewHolder
-        return createViewHolder(itemView, itemBinding)
     }
-
-    // Implement this method in your derived class to create an instance of BaseViewHolder
-    open fun createViewHolder(itemView: View, itemBinding: B): BH {
-        // You should implement this method in your derived adapter class
-        throw NotImplementedError("createViewHolder must be implemented in the derived class")
-    }
-
-    /**
-     * 设置外部点击时间，无关参数
-     */
-    open fun setOnclickListener(listener:()->Unit?){
-        itemClick = listener
-    }
-
-    /**
-     * @param 设置跳转点击
-     */
-    open fun setStartActivityForResult(clazz: Any){
-        val intent = Intent(activity,clazz::class.java)
-        activity.startActivityForResult(intent,101)
-    }
-
-
-    // Other adapter methods can be implemented here...
 }

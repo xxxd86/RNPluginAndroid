@@ -15,13 +15,8 @@ import com.example.asbaselibrary.utils.DpUtils
  */
 abstract class BaseViewHolder<T>(private val layoutBinding: ViewBinding):RecyclerView.ViewHolder(layoutBinding.root) {
     open var data:MutableList<T?> = mutableListOf()
-    open fun bind(position: Int):T?{
-          return data.getOrNull(position)
+    open fun bind(position: Int,t: T?){
     }
-
-
-
-
     /**
      * @param 获取HolderContext
      */
