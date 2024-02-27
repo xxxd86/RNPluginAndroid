@@ -53,8 +53,7 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel, ActivitySplashBindin
      */
     private var  hasPaused = false;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView() {
         //初始化OpenCV
         OpenCV.initOpenCV()
         //初始化WeChatQRCodeDetector

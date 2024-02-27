@@ -21,6 +21,7 @@ abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> (open val bindin
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(getViewModelClass())
         setContentView(binding.root)
+        initView()
     }
 
     private fun getViewModelClass(): Class<VM> {
@@ -36,4 +37,6 @@ abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> (open val bindin
             .load(url)
             .into(view)
     }
+
+    open fun initView(){}
 }
