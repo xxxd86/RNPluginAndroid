@@ -6,17 +6,17 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
+import android.text.TextUtils
 import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
+import java.util.Locale
 
 
 /**
@@ -41,16 +41,26 @@ object DeviceUtils {
     }
 
     /**
-     * 透明状态栏
+     * 自定义状态栏颜色，不收起来
      */
-    private fun setTransTableScreen(activity:AppCompatActivity?){
-        activity?.window?.statusBarColor = Color.TRANSPARENT;
+    private fun setTransTableScreen(activity:AppCompatActivity?,color:Int){
+        activity?.window?.statusBarColor = color
     }
-    fun setScreen(screenState: ScreenState, activity:AppCompatActivity?){
+
+    /**
+     * 收起状态栏
+     */
+    private fun setFullScreenWithStateBar(activity: AppCompatActivity?){
+        activity?.window?.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+    }
+    fun setScreen(screenState: ScreenState, activity:AppCompatActivity? , state_Color: Int = 0){
         when(screenState){
             ScreenState.STATE_FULL -> setFullScreen(activity)
-            ScreenState.STATE_PAT -> setTransTableScreen(activity)
-            else -> {}
+            ScreenState.STATE_PAT -> setTransTableScreen(activity,state_Color)
+            ScreenState.STATE_COM -> setFullScreenWithStateBar(activity)
         }
     }
     fun getInternPermission(){
@@ -120,9 +130,10 @@ object DeviceUtils {
                 callback.invoke(intent)
             }
         }
-
-
-
+    }
+    fun getLanguageInfo(): String? {
+        val locale = Locale.getDefault()
+        return  LocalUtil.getString(locale)
     }
 }
 
@@ -131,7 +142,7 @@ object DeviceUtils {
  * 主要分为三个状态
  * 1.全屏 —— 广告加载
  * 2.状态栏符合最近的颜色状态
- * 3.普通状态
+ * 3.普通状态,无状态栏
  */
 enum class ScreenState{
       STATE_FULL,STATE_PAT,STATE_COM

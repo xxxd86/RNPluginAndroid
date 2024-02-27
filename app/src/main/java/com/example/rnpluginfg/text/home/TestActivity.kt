@@ -29,4 +29,16 @@ class TestActivity : BaseWebActivity<HomeViewModel,ActivityTestBinding>(Activity
          loadUrl("http://www.baidu.com")
     }
 
+    override fun onNightChange(onSuccess: () -> Unit): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLanguageChange(onSuccess: () -> Unit): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onScreanChange(onSuccess: () -> Unit) {
+        TODO("Not yet implemented")
+    }
+
 }

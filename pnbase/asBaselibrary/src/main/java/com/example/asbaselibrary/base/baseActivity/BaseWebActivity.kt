@@ -22,7 +22,7 @@ import androidx.viewbinding.ViewBinding
  * 注意声明   android:usesCleartextTraffic="true"，以及网络信息
  */
 
-open class BaseWebActivity<VM: ViewModel,VB : ViewBinding> (override var bindingFactory: (LayoutInflater) -> VB): BaseVMActivity<ViewModel, ViewBinding>(bindingFactory) {
+abstract class BaseWebActivity<VM: ViewModel,VB : ViewBinding> (override var bindingFactory: (LayoutInflater) -> VB): BaseVMActivity<ViewModel, ViewBinding>(bindingFactory) {
      var m_webView: WebView? = null
     override val binding: VB by lazy { bindingFactory(layoutInflater) }
     @SuppressLint("SetJavaScriptEnabled")
@@ -48,7 +48,7 @@ open class BaseWebActivity<VM: ViewModel,VB : ViewBinding> (override var binding
 
 
 
-    //缩放操作
+           //缩放操作
 
           setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
 

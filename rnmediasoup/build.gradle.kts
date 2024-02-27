@@ -1,16 +1,15 @@
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.android.library") version "8.1.1" apply false
 }
 
 android {
-    namespace = "com.example.asbaselibrary"
+    namespace = "com.example.rnmediasoup"
     compileSdk = 34
-
     defaultConfig {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -29,9 +28,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -42,8 +38,4 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("com.squareup.retrofit2:retrofit:2.6.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.5.0") //配置使用Gson解析响应数据 可选
-    implementation ("com.squareup.retrofit2:adapter-rxjava:2.4.0")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

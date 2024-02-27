@@ -117,4 +117,16 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel, ActivitySplashBindin
     override fun onDestroy() {
         super.onDestroy()
     }
+
+    override fun onNightChange(onSuccess: () -> Unit): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLanguageChange(onSuccess: () -> Unit): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onScreanChange(onSuccess: () -> Unit) {
+        TODO("Not yet implemented")
+    }
 }

@@ -106,4 +106,5 @@ dependencies {
     implementation ("com.squareup.retrofit2:adapter-rxjava:2.4.0") //配置支持RxJava 可选
     implementation(project(":openvoicepn"))
     implementation(project(":pnbase:asBaselibrary"))
+    implementation(project(":rnmediasoup"))
 }

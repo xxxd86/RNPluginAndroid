@@ -9,16 +9,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
+import com.example.asbaselibrary.base.DeviceChange
+import com.example.asbaselibrary.utils.DeviceUtils
+import com.example.asbaselibrary.utils.ScreenState
 import java.lang.reflect.ParameterizedType
 
 /**
  * MVVM框架基础
  */
-abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> (open val bindingFactory: (LayoutInflater) -> VB) : AppCompatActivity() {
+abstract class BaseVMActivity<VM : ViewModel, VB : ViewBinding> (open val bindingFactory: (LayoutInflater) -> VB) : AppCompatActivity(),DeviceChange {
     lateinit var viewModel: VM
     open val binding: VB by lazy { bindingFactory(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DeviceUtils.setScreen(ScreenState.STATE_FULL,this)
         viewModel = ViewModelProvider(this).get(getViewModelClass())
         setContentView(binding.root)
         initView()
