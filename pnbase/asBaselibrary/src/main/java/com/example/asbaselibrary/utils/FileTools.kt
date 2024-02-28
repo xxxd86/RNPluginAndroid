@@ -126,17 +126,29 @@ object FileTools {
                 ?: context.cacheDir.absolutePath
         }
     }
+     fun makedir(file:File){
+         if (!file.parentFile.exists()) {
 
+             file.parentFile.mkdirs()
+         }
+         if (file.exists()) {
+             file.delete()
+         }
+     }
     /**
      * 创建DebugLog文件,以及目录
      */
-     fun createFile(mStrPath:String) {
+     fun createLogFile(mStrPath:String) {
         //传入路径 + 文件名
         val mFile = File(mStrPath)
+        makedir(mFile)
         val m_All_File = File("$mStrPath/all.txt")
         val m_Service_File = File("$mStrPath/Service/service.txt")
+        makedir(m_Service_File)
         val m_DownLoad_File = File("$mStrPath/DownLoad/download.txt")
+        makedir(m_DownLoad_File)
         val m_FileTools_File = File("$mStrPath/FileTools/fileTools.txt")
+        makedir(m_FileTools_File)
         //判断文件是否存在，存在就删除
         if (mFile.exists()) {
             mFile.delete()
@@ -159,7 +171,7 @@ object FileTools {
      */
     fun writeTxt(fileName: String?, content: String?) {
         try {   //要指定编码方式，否则会出现乱码
-            val osw = OutputStreamWriter(FileOutputStream(fileName, true), "gbk")
+            val osw = OutputStreamWriter(FileOutputStream(fileName, true), "UTF-8")
             osw.write(content)
             osw.close()
         } catch (e: IOException) {
