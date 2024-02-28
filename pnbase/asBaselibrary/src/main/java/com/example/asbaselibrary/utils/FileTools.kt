@@ -11,10 +11,13 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.io.OutputStreamWriter
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
+
 
 /**
  * @param 日常读取文件，打开文件页面，图片页面,使用Retrofit监听技术
@@ -123,5 +126,46 @@ object FileTools {
                 ?: context.cacheDir.absolutePath
         }
     }
+
+    /**
+     * 创建DebugLog文件,以及目录
+     */
+     fun createFile(mStrPath:String) {
+        //传入路径 + 文件名
+        val mFile = File(mStrPath)
+        val m_All_File = File("$mStrPath/all.txt")
+        val m_Service_File = File("$mStrPath/Service/service.txt")
+        val m_DownLoad_File = File("$mStrPath/DownLoad/download.txt")
+        val m_FileTools_File = File("$mStrPath/FileTools/fileTools.txt")
+        //判断文件是否存在，存在就删除
+        if (mFile.exists()) {
+            mFile.delete()
+        }
+        try {
+            //创建文件
+            mFile.createNewFile()
+            m_All_File.createNewFile()
+            m_Service_File.createNewFile()
+            m_DownLoad_File.createNewFile()
+            m_FileTools_File.createNewFile()
+            Log.i("文件创建", "文件创建成功")
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    /**
+     * 写入debug文件
+     */
+    fun writeTxt(fileName: String?, content: String?) {
+        try {   //要指定编码方式，否则会出现乱码
+            val osw = OutputStreamWriter(FileOutputStream(fileName, true), "gbk")
+            osw.write(content)
+            osw.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
 
 }

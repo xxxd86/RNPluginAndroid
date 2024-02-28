@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.chaquo.python")
 }
-
 android {
     namespace = "com.example.openvoicepn"
     compileSdk = 34

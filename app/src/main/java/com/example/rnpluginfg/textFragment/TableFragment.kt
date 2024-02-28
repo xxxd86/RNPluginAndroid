@@ -55,10 +55,10 @@ class TableFragment : Fragment() {
         }
         /**
          * 实现下载插件,添加到grideview中
-         * 学习broadcastview
+         * 学习broadcastview  "http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip"
          */
         binding.button.setOnClickListener {
-            PluginHttpcv.newInstance().opencvRunPlugin(activity?.applicationContext,"https://cdn.pixabay.com/photo/2017/03/12/11/30/alishan-2136879_1280.jpg",Environment.getExternalStorageDirectory().path.toString())
+            PluginHttpcv.newInstance().opencvRunPlugin(activity?.applicationContext,"http://lc-PksCkBWu.cn-n1.lcfile.com/U5l0Mvu58YNgozbvKFCia3bVtgwAJzft/plugintext.zip",Environment.getExternalStorageDirectory().path.toString()+"/zzz/plugintext.zip")
         }
     }
 
