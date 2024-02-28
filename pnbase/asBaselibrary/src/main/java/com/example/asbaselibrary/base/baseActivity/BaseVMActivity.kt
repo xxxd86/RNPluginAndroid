@@ -1,6 +1,7 @@
 package com.example.asbaselibrary.base.baseActivity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -10,8 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.example.asbaselibrary.base.DeviceChange
+import com.example.asbaselibrary.base.baseService.BaseRNService
 import com.example.asbaselibrary.utils.DeviceUtils
+import com.example.asbaselibrary.utils.RNDebugLog
 import com.example.asbaselibrary.utils.ScreenState
+import com.example.asbaselibrary.utils.TimeUtil
 import java.lang.reflect.ParameterizedType
 
 /**

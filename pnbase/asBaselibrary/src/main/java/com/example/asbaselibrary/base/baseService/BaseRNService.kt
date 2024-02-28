@@ -23,9 +23,6 @@ class BaseRNService:Service() {
     val mStrPath = Environment.getExternalStorageDirectory().path + "/RNDebugLog";
     private var m_startTime:Long = 0
     var m_StartCommedTime:Long = 0
-    inner class MyBinder: Binder() {
-        fun getService() = this@BaseRNService
-    }
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
@@ -34,14 +31,13 @@ class BaseRNService:Service() {
         super.onCreate()
         m_startTime = TimeUtil.getCurrentTime()
         RNDebugLog.Service_Debug_Log("BaseService","基础Service已经启动")
-        FileTools.createFile(mStrPath)//创建debug文件
-        downLoadResourceAndReleaseLocal(m_zipFileName)
+//        downLoadResourceAndReleaseLocal(m_zipFileName)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         m_StartCommedTime= TimeUtil.getCurrentTime()
-
+        FileTools.createFile(mStrPath)//创建debug文件
         return super.onStartCommand(intent, flags, startId)
         //上传debugLog,并标注debug时间段,交给完成,目前先不进行网络请求只做
 

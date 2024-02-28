@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.asbaselibrary.base.DeviceChange
-import com.example.asbaselibrary.base.baseService.BaseRNService
 
 /**
  * 底层Activity
@@ -62,8 +61,6 @@ abstract class BaseActivityLate<B : ViewBinding>(val bindingFactory: (LayoutInfl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val intent = Intent(this,BaseRNService::class.java) //处理resource文件以及debugText文件的创立
-        startService(intent)
         initView()
     }
     open fun initView(){}

@@ -13,6 +13,7 @@ import androidx.viewbinding.ViewBinding
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.asbaselibrary.base.baseActivity.BaseLoadingActivity
+import com.example.asbaselibrary.base.baseService.BaseRNService
 import com.example.rnpluginfg.MainActivity
 
 import com.example.rnpluginfg.databinding.ActivitySplashBinding
@@ -54,6 +55,8 @@ class SplashActivity : BaseLoadingActivity<SplashViewModel, ActivitySplashBindin
     private var  hasPaused = false;
 
     override fun initView() {
+//        val intent = Intent(this, BaseRNService::class.java) //处理resource文件以及debugText文件的创立
+//        startService(intent)
         //初始化OpenCV
         OpenCV.initOpenCV()
         //初始化WeChatQRCodeDetector

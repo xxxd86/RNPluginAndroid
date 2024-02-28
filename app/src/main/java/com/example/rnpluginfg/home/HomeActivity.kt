@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.asbaselibrary.base.baseActivity.BaseActivityLate
+import com.example.asbaselibrary.base.baseService.BaseRNService
 import com.example.rnpluginfg.R
 import com.example.rnpluginfg.databinding.ActivityHomeBinding
 import com.example.rnpluginfg.textFragment.HomeFragment
@@ -44,7 +45,8 @@ class HomeActivity : BaseActivityLate<ActivityHomeBinding>(ActivityHomeBinding::
         contentId = binding.container.id
 
         initFirstFragment()
-
+        val intent = Intent(this, BaseRNService::class.java) //处理resource文件以及debugText文件的创立
+        startService(intent)
         binding.navBottom.setOnItemSelectedListener {item->
             if(item.itemId!=binding.navBottom.selectedItemId){
                 when(item.itemId){
