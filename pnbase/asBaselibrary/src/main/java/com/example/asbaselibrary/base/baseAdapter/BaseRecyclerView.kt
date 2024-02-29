@@ -18,4 +18,5 @@ abstract class BaseRecyclerView : RecyclerView,DeviceChange{
         defStyleAttr
     )
 
+
 }

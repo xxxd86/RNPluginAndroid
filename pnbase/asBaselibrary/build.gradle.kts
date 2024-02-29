@@ -46,4 +46,8 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0") //配置使用Gson解析响应数据 可选
     implementation ("com.squareup.retrofit2:adapter-rxjava:2.4.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.github.MZCretin:AutoUpdateProject:2.0.5")//配置自动更新
+    implementation ("com.squareup.retrofit2:retrofit:2.6.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.5.0") //配置使用Gson解析响应数据 可选
+    implementation ("com.squareup.retrofit2:adapter-rxjava:2.4.0") //配置支持RxJava 可选
 }

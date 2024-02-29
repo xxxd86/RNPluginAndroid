@@ -17,6 +17,8 @@ import java.util.zip.ZipFile
  * @property 需要自定义BaseUrl或者是远程访问接口，BaseService提供外接url下载  默认位置
  * @param 创建本地LogFile，方便读写
  * @exception 不允许继承
+ * @param 实现自动更新，调用onStartCommand可以进行操作
+ *
  */
 class BaseRNService:Service() {
     var m_zipFileName: String? = null

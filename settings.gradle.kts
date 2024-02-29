@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
         maven {
             setUrl("https://chaquo.com/maven")
+            setUrl("https://jitpack.io")
         }
     }
 }
